@@ -76,12 +76,9 @@ int getLine(char line[LINE]) {
 
 int main() {
     char word[WORD];
-    printf("enter word and option\n");
     getWord(word);
-    printf("word = %s  ", word);
     char option;
     scanf("%s", &option);
-    printf("option = %c\n", option);
     int there_is_a_line;
     do {
         if (option == 'a') {

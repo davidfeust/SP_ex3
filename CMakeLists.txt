@@ -5,4 +5,3 @@ set(CMAKE_C_STANDARD 99)
 
 add_executable(Sort isort.c)
 add_executable(Text txtfind.c)
-add_executable(Test test.c)
