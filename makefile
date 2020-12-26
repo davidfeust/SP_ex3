@@ -1,7 +1,12 @@
+all: isort txtfind
 
-
-isort.o:
-	gcc -Wall -o isort.c
+isort.o: isort.c
+	gcc -Wall -c isort.c
 
 txtfind.o:
-	gcc -Wall -o txtfind.c
+	gcc -Wall -c txtfind.c
+
+clean:
+	rm -f *.o
+
+.PHONY: clean all
