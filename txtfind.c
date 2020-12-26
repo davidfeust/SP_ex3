@@ -26,7 +26,7 @@ int similar(char *s, char *t, int n) {
     int skipped = 0;
     int counter_s = 0;
     int counter_t = 0;
-    while (s[counter_s]) {
+    while (s[counter_s] || t[counter_t]) {
         if (s[counter_s] == t[counter_t]) {
             counter_s++;
             counter_t++;
@@ -38,7 +38,6 @@ int similar(char *s, char *t, int n) {
             return 0;
         }
     }
-
     if (skipped <= n) {
         return 1;
     }
@@ -46,19 +45,20 @@ int similar(char *s, char *t, int n) {
 }
 
 int getWord(char word[30]) {
-    memset(word, '\0', strlen(word));
+    memset(word, '\0', WORD);
     scanf("%s", word);
     if (feof(stdin)) {
         return -1;
     }
     if (word[strlen(word)] == '\n') {
+        word[strlen(word)] = '\0';
         return 0;
     }
     return 1;
 }
 
 int getLine(char line[LINE]) {
-    memset(line, '\0', strlen(line));
+    memset(line, '\0', LINE);
     int i = 0;
     char c;
     while (1) {
