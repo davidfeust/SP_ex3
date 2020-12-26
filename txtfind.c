@@ -23,9 +23,6 @@ int subString(char *str1, char *str2) {
 }
 
 int similar(char *s, char *t, int n) {
-    if (strlen(t) + n != strlen(s)) {
-        return 0;
-    }
     int skipped = 0;
     int counter_s = 0;
     int counter_t = 0;
@@ -42,32 +39,39 @@ int similar(char *s, char *t, int n) {
         }
     }
 
-    if (skipped == n) {
+    if (skipped <= n) {
         return 1;
     }
     return 0;
 }
 
-void print_lines(char *str) {
-
-}
-
-
-void getWord(char word[30]) {
+int getWord(char word[30]) {
+    memset(word, '\0', strlen(word));
     scanf("%s", word);
+    if (feof(stdin)) {
+        return -1;
+    }
+    if (word[strlen(word)] == '\n') {
+        return 0;
+    }
+    return 1;
 }
 
 int getLine(char line[LINE]) {
-    int i = -1;
-    do {
+    memset(line, '\0', strlen(line));
+    int i = 0;
+    char c;
+    while (1) {
+        scanf("%c", &c);
+        if (feof(stdin)) {
+            return -1;
+        }
+        line[i] = c;
         i++;
-        scanf("%c", line + i);
-//        *(line + i) = getchar();
-    } while (line[i] != '\n' || line[i] != EOF);
-    if (line[i] != EOF) {
-        return -1;
+        if (c == '\n') {
+            return i;
+        }
     }
-    return i + 1;
 }
 
 int main() {
@@ -80,19 +84,21 @@ int main() {
     printf("option = %c\n", option);
     int there_is_a_line;
     do {
-        char line[LINE];
-        printf("enter line\n");
-        there_is_a_line = getLine(line);
-        printf("%s\n", line);
-//        if (option == 'a') {
-//            if (subString()) {
-//
-//            }
-//        } else {
+        if (option == 'a') {
+            char line[LINE];
+            there_is_a_line = getLine(line);
+            if (subString(line, word)) {
+                printf("%s", line);
+            }
+        } else {
+            char word2[WORD];
+            there_is_a_line = getWord(word2);
+            if (similar(word2, word, 1)) {
+                printf("%s\n", word2);
+            }
 
-
-//        }
+        }
     } while (there_is_a_line != -1);
-    printf("The End!");
+
     return 0;
 }

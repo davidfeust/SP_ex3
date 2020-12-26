@@ -27,7 +27,8 @@ int main() {
         scanf("%d", arr + i);
     }
     insertion_sort(arr, SIZE);
-    for (int i = 0; i < SIZE; ++i) {
+    for (int i = 0; i
+            < SIZE; ++i) {
         printf("%d,", *(arr + i));
     }
     return 0;
